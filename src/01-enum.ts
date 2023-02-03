@@ -1,6 +1,6 @@
 /* enums are a way that TS enables developers to define named constants, much more strict than
 using literal types */
-enum ROLES {
+export enum ROLES {
   ADMIN,
   SOMEONE,
   SELLER = 'seller',
@@ -15,7 +15,7 @@ only one without an initializer, otherwise errors will pop-up */
 console.log(ROLES.ADMIN, ROLES.SOMEONE);
 
 /* enums can be asigned to types */
-type User = {
+export type User = {
   username: string,
   role: ROLES;
 }
