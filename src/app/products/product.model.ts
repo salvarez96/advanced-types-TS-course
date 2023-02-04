@@ -7,7 +7,13 @@ export type Size = 'S' | 'M' | 'L' | 'XL';
 OOP */
 export interface Product extends BaseModel {
   title: string;
+  image: string;
+  description: string;
+  color: string;
+  price: number;
   stock: number;
   size?: Size;
   category: Category
+  isNew: boolean;
+  tags: (string | number)[];
 }
