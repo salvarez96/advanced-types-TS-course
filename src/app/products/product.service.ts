@@ -1,4 +1,5 @@
 import { faker } from "@faker-js/faker";
+import { CreateProductDTO } from "./product.dto";
 import { Product, Size } from "./product.model";
 
 export const products: Product[] = [];
@@ -13,8 +14,23 @@ export const giveRandomNumber = (id: 'stock' | 'price') => {
   }
 }
 
-export const addProduct = (data: Product) => {
-  products.push(data);
+export const addProduct = (data: CreateProductDTO) => {
+  /* all this new data in newData is what a DDBB is supossed to automatically assign when we
+  create a new product. But, because we're not working with one, we'll assign it here */
+  const newData: Product = {
+    ...data,
+    id: faker.datatype.uuid(),
+    createdAt: faker.date.recent(),
+    updatedAt: faker.date.recent(),
+    category: {
+      id: data.categoryId,
+      title: faker.commerce.department(),
+      createdAt: faker.date.recent(),
+      updatedAt: faker.date.recent()
+    }
+  }
+  products.push(newData);
+  return newData;
 }
 
 export const getProduct = (id: string) => {

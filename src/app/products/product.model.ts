@@ -13,7 +13,7 @@ export interface Product extends BaseModel {
   price: number;
   stock: number;
   size?: Size;
-  category: Category
+  category: Category;
   isNew: boolean;
   tags: (string | number)[];
 }

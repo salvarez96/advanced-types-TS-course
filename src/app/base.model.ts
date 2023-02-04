@@ -4,6 +4,6 @@ export interface BaseModel {
   reserved work 'readonly' before their declaration, like this: */
   readonly id: string | number;
   readonly createdAt: Date;
-  updatedAt?: Date;
+  updatedAt: Date;
 }
 /* readonly can only be used with properties inside classes, interfaces and objects */
