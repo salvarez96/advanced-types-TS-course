@@ -38,7 +38,7 @@ export const getProductIndex = (id: Product['id']) => {
   return products.findIndex(product => product.id === id);
 }
 
-export const findProducts = (id: Product['id']): FindProductDTO[] => {
+export const findProducts = (dto: FindProductDTO): Product[] => {
   // const productIndex = getProductIndex(id);
   return products;
 }

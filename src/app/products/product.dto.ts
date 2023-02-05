@@ -16,4 +16,8 @@ export interface UpdateProductDTO extends Partial<CreateProductDTO> {}
 
 /* Here, we need to create a DTO that is able to optionally use every Product's properties but
 also isn't able to modify them, so we concatenate utility types like this: */
-export interface FindProductDTO extends Readonly<Partial<Product>>{}
+export interface FindProductDTO extends Readonly<Partial<Omit<Product, 'tags'>>>{
+  /* here, we use readonly && ReadonlyArray because we don't want the 'tags' array to mutate
+  when we search for a product */
+  readonly tags: ReadonlyArray<Product['tags']>;
+}
