@@ -215,4 +215,6 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+# just a random file for me to experiment
+example.js
 # End of https://www.toptal.com/developers/gitignore/api/windows,macos,linux,node

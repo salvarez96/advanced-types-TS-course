@@ -7,3 +7,11 @@ Product */
 export interface CreateProductDTO extends Omit<Product, 'id' | 'createdAt' | 'updatedAt' | 'category'> {
   categoryId: string;
 }
+
+/* Here, we create a new DTO based from CreateProductDTO that will be used to update a product
+but only receive the parameters in CreateProductDTO, instead of Product. By using a extension
+of CreateProductDTO, UpdateProductDTO's properties are optional, so the product can be overwritten
+with any of the allowed editable parameters */
+export interface UpdateProductDTO extends Partial<CreateProductDTO> {
+
+}

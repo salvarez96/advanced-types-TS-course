@@ -1,5 +1,5 @@
 import { faker } from "@faker-js/faker";
-import { CreateProductDTO } from "./product.dto";
+import { CreateProductDTO, UpdateProductDTO } from "./product.dto";
 import { Product, Size } from "./product.model";
 
 export const products: Product[] = [];
@@ -33,22 +33,27 @@ export const addProduct = (data: CreateProductDTO) => {
   return newData;
 }
 
-export const getProduct = (id: string) => {
+export const getProductIndex = (id: (string | number)) => {
   return products.findIndex(product => product.id === id);
 }
 
-export const findProduct = (id: string) => {
-  const productIndex = getProduct(id);
+export const findProduct = (id: (string | number)) => {
+  const productIndex = getProductIndex(id);
   return products[productIndex];
 }
 
-export const deleteProduct = (id: string) => {
-  const productToDelete = getProduct(id);
+export const deleteProduct = (id: (string | number)) => {
+  const productToDelete = getProductIndex(id);
   return products.splice(productToDelete, 1);
 }
 
-export const updateProduct = (id: string, changes: Product) => {
-  const productToChange = getProduct(id);
-  products.splice(productToChange, 1, changes);
-  return products[productToChange];
+export const updateProduct = (id: (string | number), changes: UpdateProductDTO) => {
+  const productToChangeIndex = getProductIndex(id);
+  const productToChange = products[productToChangeIndex];
+  products[productToChangeIndex] = {
+    ...productToChange,
+    ...changes,
+    updatedAt: faker.date.recent()
+  };
+  return products[productToChangeIndex];
 }
