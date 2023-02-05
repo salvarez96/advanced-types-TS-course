@@ -1,6 +1,7 @@
 import { faker } from "@faker-js/faker";
 import { CreateProductDTO, FindProductDTO, UpdateProductDTO } from "./product.dto";
 import { Product, Size } from "./product.model";
+import { BaseModel } from "../base.model";
 
 export const products: Product[] = [];
 
@@ -33,21 +34,23 @@ export const addProduct = (data: CreateProductDTO) => {
   return newData;
 }
 
-export const getProductIndex = (id: (string | number)) => {
+export const getProductIndex = (id: Product['id']) => {
   return products.findIndex(product => product.id === id);
 }
 
-export const findProducts = (id: (string | number)): FindProductDTO[] => {
+export const findProducts = (id: Product['id']): FindProductDTO[] => {
   // const productIndex = getProductIndex(id);
   return products;
 }
 
-export const deleteProduct = (id: (string | number)) => {
+export const deleteProduct = (id: Product['id']) => {
   const productToDelete = getProductIndex(id);
   return products.splice(productToDelete, 1);
 }
 
-export const updateProduct = (id: (string | number), changes: UpdateProductDTO) => {
+/* In TS, we can access specific properties from an already existing object type or interface
+to use its property's type. This is known as 'indexed access types' We do it like: Type['property']. Example:*/
+export const updateProduct = (id: Product['id'], changes: UpdateProductDTO) => {
   const productToChangeIndex = getProductIndex(id);
   const productToChange = products[productToChangeIndex];
   products[productToChangeIndex] = {
